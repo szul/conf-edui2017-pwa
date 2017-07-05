@@ -1,0 +1,9 @@
+{
+    "extends": "./base.json",
+    "compilerOptions": {
+                "outDir": "static/js/_gen"
+            },
+    "files": [
+        "static/ts/app.ts"
+    ]
+}

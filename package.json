@@ -1,0 +1,29 @@
+{
+  "name": "conf-edui2017-pwa",
+  "version": "1.0.0",
+  "description": "Example progressive web application for the edUi Conference (2017)",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/szul/conf-edui2017-pwa.git"
+  },
+  "keywords": [
+    "pwa",
+    "progressivewebapp",
+    "typescript",
+    "javascript",
+    "serviceworker"
+  ],
+  "author": "Michael Szul <michael@szul.us>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/szul/conf-edui2017-pwa/issues"
+  },
+  "homepage": "https://github.com/szul/conf-edui2017-pwa#readme",
+  "dependencies": {
+    "metronical.metron": "^2.2.2"
+  }
+}

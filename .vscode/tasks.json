@@ -2,9 +2,19 @@
     "version": "0.1.0",
     "showOutput": "always",
     "echoCommand": true,
-    "command": "tsc",
-    "args": ["-p", "./tsconfig.json"],
-    "isShellCommand": true,
-    "isBuildCommand": true,
-    "problemMatcher": "$tsc"
+    "tasks": [
+        {   "taskName": "proj",
+            "command": "tsc",
+            "args": ["-p", "./tsconfig.json"],
+            "isShellCommand": true,
+            "isBuildCommand": true,
+            "problemMatcher": "$tsc"
+        },
+        {   "taskName": "sw",
+            "command": "tsc",
+            "args": ["-p", "./service-worker.json"],
+            "isShellCommand": true,
+            "problemMatcher": "$tsc"
+        }   
+    ]
 }
