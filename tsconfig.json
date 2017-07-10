@@ -4,6 +4,7 @@
                 "outDir": "static/js/_gen"
             },
     "files": [
+        "static/ts/types.ts",
         "static/ts/app.ts"
     ]
 }
