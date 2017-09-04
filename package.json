@@ -24,6 +24,6 @@
   },
   "homepage": "https://github.com/szul/conf-edui2017-pwa#readme",
   "dependencies": {
-    "metronical.metron": "^2.2.2"
+    "metronical.metron": "^2.2.15"
   }
 }
