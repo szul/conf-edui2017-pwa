@@ -5,6 +5,7 @@
             },
     "files": [
         "static/ts/types.ts",
+        "static/ts/storage.ts",
         "static/ts/app.ts"
     ]
 }

@@ -3,10 +3,28 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- // Make responsive, and prevent resize on selection of select element -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="keywords" content="" />
     <meta name="description" content="" />
-    <title></title>
+    <!--// Apple Specific -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="PWA" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!--// -->
+    <!--// Microsoft Specific -->
+    <meta name="msapplication-TileImage" content="static/images/ms-icon-144x144.png" />
+    <meta name="msapplication-TileColor" content="#23527c" />
+    <!-- // -->
+    <title>Progressive Web Apps</title>
+    <link rel="manifest" href="manifest.json" />
+    <!--// Apple Specific -->
+    <link rel="apple-touch-startup-image" href="static/images/apple-launch.png">
+    <link rel="apple-touch-icon" href="static/images/apple-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="static/images/touch-icon-ipad.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="static/images/touch-icon-iphone-retina.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="static/images/touch-icon-ipad-retina.png">
+    <!--//-->
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic" />
     <link rel="stylesheet" href="node_modules/normalize.css/normalize.css" />
     <link rel="stylesheet" href="node_modules/milligram/dist/milligram.min.css" />
@@ -26,11 +44,39 @@
   <script type="text/javascript">
     if ("serviceWorker" in navigator) {
         var serviceWorker = "./service-worker.js";
-        navigator.serviceWorker.register(serviceWorker).then(function (reg) {
+        navigator.serviceWorker.register(serviceWorker).then(function(reg) {
                 console.log("The service worker has been registered!", reg);
             }).catch(function (err) {
                 console.log("The service worker registration failed!", err);
             });
+        if("SyncManager" in window) {
+            navigator.serviceWorker.ready.then(function(reg) {
+                return reg.sync.register("appSync");
+            });
+        }
+        if("PushManager" in window) {
+            reg.pushManager.getSubscription().then(function(sub) {
+                console.log(JSON.stringify(sub));
+                if (sub != null) {
+                    console.log("You are subscribed to notifications!");
+                }
+                else {
+                    console.log("You are not yet subscribed to notifications.");
+                    reg.pushManager.subscribe({
+                        userVisibleOnly: true,
+                        applicationServerKey: ""
+                    }).then(function(s) {
+                        console.log("You have now subscribed!");
+                        console.log(JSON.stringify(s));
+                        }).catch(function(error) {
+                        console.log("Subscription failed! " + error);
+                        if(Notification.permission === "denied") {
+                            //Prevent additional requests for Push notifications
+                        }
+                    });
+                }
+            });
+        }
     }
     else {
         console.log("Service worker is not supported by your browser.");

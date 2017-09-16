@@ -3,7 +3,13 @@
 var cacheName = "CACHE-1";
 
 var files = [
-    "./index.html"
+    "./index.html",
+    "./static/images/android-icon-36x36.png",
+    "./static/images/android-icon-48x48.png",
+    "./static/images/android-icon-72x72.png",
+    "./static/images/android-icon-96x96.png",
+    "./static/images/android-icon-144x144.png",
+    "./static/images/android-icon-192x192.png"
 ];
 
 window.addEventListener(SW.INSTALL, (event) => {
@@ -35,9 +41,20 @@ window.addEventListener(SW.FETCH, (event) => {
           }
           else {
               return fetch(request).then((response) => {
-                  return response;
+                    caches.open(cacheName).then((cache) => {
+                        cache.put(request, response.clone());                
+                        return response;
+                    });
               });
           }
       })
     );
+});
+
+window.addEventListener(SW.SYNC, function(event) {
+    if ((<any>event).tag === "appSync") {
+        (<any>event).waitUntil(() => {
+            //This should do something and then return a Promise.
+        });
+    }
 });
