@@ -58,3 +58,20 @@ window.addEventListener(SW.SYNC, function(event) {
         });
     }
 });
+
+window.addEventListener(SW.PUSH, function(event) {
+    console.log(`Push notification receive. ${(<any>event).data.text()}`);
+    var options = {
+        body: "Push notification body.",
+        icon: "images/icon.png",
+        badge: "images/badge.png"
+    };
+    (<any>event).waitUntil((<any>window).registration.showNotification("Push Notification", options));
+});
+
+self.addEventListener(SW.NOTIFICATION_CLICK, function(event) {
+    (<any>event).notification.close();
+    (<any>event).waitUntil(
+        //clients.openWindow("https://codepunk.io")
+    );
+});

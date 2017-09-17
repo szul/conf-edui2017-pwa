@@ -68,7 +68,7 @@
                     }).then(function(s) {
                         console.log("You have now subscribed!");
                         console.log(JSON.stringify(s));
-                        }).catch(function(error) {
+                    }).catch(function(error) {
                         console.log("Subscription failed! " + error);
                         if(Notification.permission === "denied") {
                             //Prevent additional requests for Push notifications
