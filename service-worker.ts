@@ -72,6 +72,6 @@ window.addEventListener(SW.PUSH, function(event) {
 window.addEventListener(SW.NOTIFICATION_CLICK, function(event) {
     (<any>event).notification.close();
     (<any>event).waitUntil(
-        //clients.openWindow("https://codepunk.io")
+        (<any>window).clients.openWindow("https://codepunk.io")
     );
 });
