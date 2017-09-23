@@ -3,6 +3,7 @@ export var _hasIndexedDB: boolean = false;
 export var _localDBName: string;
 export var _localDBVersion: number;
 export var _localDBStore: string;
+
 export function createObjectStore(localDBName: string, localDBVersion: number, localDBStore: string): any {
     _localDBName = localDBName;
     _localDBVersion = localDBVersion;
@@ -43,6 +44,7 @@ export function createObjectStore(localDBName: string, localDBVersion: number, l
     });
     return p;
 }
+
 export function getObjectStore(): any {
     try {
         let transaction = _db.transaction(_localDBStore, "readwrite");
@@ -53,6 +55,7 @@ export function getObjectStore(): any {
         return null;
     }
 }
+
 export function getItem(s: string, val?: string): any {
     var p = new Promise((resolve, reject) => {
         try {
@@ -79,6 +82,7 @@ export function getItem(s: string, val?: string): any {
     });
     return p;
 }
+
 export function setItem(s: string, a: any): any {
     var p = new Promise((resolve, reject) => {
         try {
@@ -103,6 +107,7 @@ export function setItem(s: string, a: any): any {
     });
     return p;
 }
+
 export function removeItem(s: string): any {
     var p = new Promise((resolve, reject) => {
         try {
